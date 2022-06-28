@@ -1,0 +1,25 @@
+=begin  
+class Board 
+    def initialize(player1, player2)
+        @board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
+        @player1 = player1
+        @player2 = player2 
+    end
+
+    def reset_the_board
+        @board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
+    end 
+
+    def displaying_the_tictactoe_board
+        puts "#{board[0]} | #{board[1]}" | #{board[2]}"
+        puts "#{board[3]} | #{board[4]}" | #{board[5]}"
+
+    win_conditions = [
+        [0, 1, 2]
+        [3, 4, 5]
+        ....
+        [0, 4, 8]
+    ]
+end
+end
+#
