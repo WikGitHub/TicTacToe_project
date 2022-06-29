@@ -158,6 +158,20 @@ puts ' #{board[6]} __ #{board[7]} __ #{board[8]} '
     # end
 
 
+require 'stringio'
+
+def get_input
+    $stdin.gets.chomp
+end
+
+describe "get_user_input" do
+    $stdin = StringIO.new("2")
+
+    it "returns the player's input" do
+      expect(get_input).to eq("2")
+    end
+  end
+
 
 
 

@@ -11,11 +11,11 @@ describe 'tic tac toe' do
         end
 
         it 'player 1 uses "X"' do
-            expect(@game.player1).to eq("X")
+            expect(@game.players[:player1]).to eq("X")
         end
 
         it 'player 2 uses "O" (O, not zero)' do
-            expect(@game.player2).to eq("O")
+            expect(@game.players[:player2]).to eq("O")
         end
 
         it 'there is no winner' do
@@ -28,7 +28,7 @@ describe 'tic tac toe' do
     end
 
     it '#current_player returns the player whose round it is' do
-        expect(@game.current_player).to eq("player1")
+        expect(@game.current_player).to eq(:player1)
     end
 
     it '#check_if_empty checks if field already in use' do
@@ -37,7 +37,7 @@ describe 'tic tac toe' do
 
     it '#switch a player switches a player' do
         @game.switch_a_player
-        expect(@game.current_player).to eq("player2")
+        expect(@game.current_player).to eq(:player2)
     end
 
     it 'expect #assign_a_value' do
@@ -48,7 +48,7 @@ describe 'tic tac toe' do
     it 'expect #assign_a_value not to override existing value' do
         @game.assign_a_value(@game.choose_a_field(1))
         @game.switch_a_player
-        @game.assign_a_value(@game.choose_a_field(1))
+        @game.assign_a_value(@game.choose_a_field(1)) if @game.check_if_empty(1)
         expect(@game.board.first).to eq("X")
     end
 
@@ -90,9 +90,84 @@ describe 'tic tac toe' do
             @game.assign_a_value(@game.choose_a_field(1))
             @game.assign_a_value(@game.choose_a_field(2))
             @game.assign_a_value(@game.choose_a_field(3))
-            expect(@game.check_victory_conditions).to be(true)
+            expect(@game.check_victory_conditions).to eq(:player1)
+        end
+
+        it 'the game is won if 3 symbols in a column' do
+            @game.assign_a_value(@game.choose_a_field(1))
+            @game.assign_a_value(@game.choose_a_field(4))
+            @game.assign_a_value(@game.choose_a_field(7))
+            expect(@game.check_victory_conditions).to eq(:player1)
+        end
+
+        it 'the game is won if 3 symbols diagonally from the left' do
+            @game.assign_a_value(@game.choose_a_field(1))
+            @game.assign_a_value(@game.choose_a_field(5))
+            @game.assign_a_value(@game.choose_a_field(9))
+            expect(@game.check_victory_conditions).to eq(:player1)
+        end
+
+        it 'the game is won if 3 symbols diagonally from the right' do
+            @game.assign_a_value(@game.choose_a_field(3))
+            @game.assign_a_value(@game.choose_a_field(5))
+            @game.assign_a_value(@game.choose_a_field(7))
+            expect(@game.check_victory_conditions).to eq(:player1)
         end
     end
+
+    context '#check_empty_fields' do
+        it 'returns true when there are empty fields' do
+            expect(@game.check_empty_fields).to be true
+        end
+
+        it 'returns true when there are empty fields' do
+            @game.board = ["X", "O", "X", "O", "X", "O", "X", "O", "X"]
+            expect(@game.check_empty_fields).to be false
+        end
+    end
+
+    context '#check_input' do
+        # xit "doesn't raise error when valid input" do
+        #     expect{@game.check_input(1)}.not_to raise_error("Invalid input")
+        # end
+
+        it "raises error when invalid input" do
+            expect{@game.check_input(10)}.to raise_error("Invalid input")
+        end
+    end
+
+    context '#display_winner' do
+        it 'displays draw when all fields used & no winner' do
+            @game.board = ["X", "O", "X", "O", "X", "O", "X", "O", "X"] 
+            expect(@game.display_winner).to eq("Draw")
+        end
+
+        it 'displays player 1 if matches for Xs' do
+            @game.board = ["X", "X", "X", "O", "O", " ", " ", " ", " "] 
+            expect(@game.display_winner).to eq("Player 1 wins")
+        end
+        
+        it 'displays player 2 if matches for Os' do
+            @game.switch_a_player
+            @game.board = ["O", "O", "O", "X", "X", " ", " ", " ", " "] 
+            expect(@game.display_winner).to eq("Player 2 wins")
+        end
+    end
+
+    context '#run_game' do
+        before(:each) do
+            run_game
+        end
+        it 'initializes a game' do
+            expect(@new_game).not_to be nil
+        end
+    end
+
+    context '#' do
+    end
+
+
+    
 end
 
 
