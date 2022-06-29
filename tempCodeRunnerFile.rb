@@ -1,1 +1,1 @@
-board[0]
+:player

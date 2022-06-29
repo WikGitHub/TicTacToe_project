@@ -173,7 +173,26 @@ describe "get_user_input" do
   end
 
 
-
+def run_game(auto = true)
+    @new_game = TicTacToe.new
+    puts "Welcome to Tic Tac Toe!"
+    puts @new_game.display_board
+    while @new_game.check_victory_conditions == nil
+        puts "#{@new_game.current_player.to_s}'s round"
+        input = ""
+        if @new_game.current_player == :player1 && auto == false
+            puts "Select field from 1 to 9"
+            input = @new_game.get_user_input.to_i
+        else
+            input = @new_game.choose_a_field(rand(1..9))
+        end
+        puts @new_game.assign_a_value(input) if @new_game.check_if_empty(input) && @new_game.check_input(input)
+        puts @new_game.display_board
+        puts @new_game.winner = @new_game.check_victory_conditions
+        @new_game.switch_a_player
+    end
+    puts @new_game.display_winner
+end
 
 
 
