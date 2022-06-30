@@ -9,7 +9,7 @@
 <body>
     <h1>Welcome to Tic Tac Toe!</h1>
     <p><%= locals[:message] if locals[:message] != nil%></p>
-    <p><%="It's #{game.current_player}'s round"%></p>
+    <p><%="It's #{game.current_player.to_s.gsub(/p/, 'P').gsub(/1/, ' 1').gsub(/2/, ' 2')}'s round"%></p>
     <pre><p><%= game.display_current_board %></p></pre>
     <form action="/" method="POST">
         <label for="field"> Select field from 1 to 9 </label>

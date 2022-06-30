@@ -8,7 +8,7 @@
 </head>
 <body>
     <p><%= locals[:message] if locals[:message] != nil%></p>
-    <p><%="The winner is... #{game.winner}!"%></p>
+    <p><%="The winner is... #{game.winner.to_s.gsub(/p/, 'P').gsub(/1/, ' 1').gsub(/2/, ' 2')}!"%></p>
     <pre><p><%= game.display_current_board %></p></pre>
     <form action="/clear" method="GET">
         <input type="submit" value="Reset game?">
