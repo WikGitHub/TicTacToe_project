@@ -5,7 +5,9 @@ require 'sinatra/reloader' if development?
 game = TicTacToe.new
 
 get '/' do
-    erb(:index, locals: {game: game})
+    erb :layouts do
+        erb(:index, locals: {game: game})
+    end
 end
 
 post '/' do
@@ -27,12 +29,18 @@ post '/' do
         #     erb(:draw, locals: {game: game})
         # els
         if game.winner != nil
-            erb(:winner, locals: {game: game}) 
+            erb :layouts do
+                erb(:winner, locals: {game: game}) 
+            end
         else
-            erb(:index, locals: {game: game, message: "Field submitted!"})
+            erb :layouts do
+                erb(:index, locals: {game: game, message: "Field submitted!"})
+            end
         end
     else
-        erb(:index, locals: {game: game, message: "Wrong input. Please select a number between 1 and 9."})
+        erb :layouts do
+            erb(:index, locals: {game: game, message: "Wrong input. Please select a number between 1 and 9."})
+        end
     end
 
 
@@ -45,5 +53,7 @@ get '/clear' do
     game.board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
     game.winner = nil
     game.current_player = :player1
-    erb(:index, locals: {game: game})
+    erb :layouts do
+        erb(:index, locals: {game: game})
+    end
 end

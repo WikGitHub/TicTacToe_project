@@ -1,17 +1,8 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic Tac Toe</title>
-    <style>body {white-space: pre-line; margin: 50px 50px; text-align: center;}</style>
-</head>
-<body>
+<div class="main">
     <p><%= locals[:message] if locals[:message] != nil%></p>
-    <p><%="The winner is... #{game.winner.to_s.gsub(/p/, 'P').gsub(/1/, ' 1').gsub(/2/, ' 2')}!"%></p>
+    <h2><%="The winner is... #{game.winner.to_s.gsub(/p/, 'P').gsub(/1/, ' 1').gsub(/2/, ' 2')}!"%></h2>
     <pre><p><%= game.display_current_board %></p></pre>
     <form action="/clear" method="GET">
-        <input type="submit" value="Reset game?">
+        <input type="submit" value="Reset game?" class="btn btn-danger">
     </form>
-</body>
-</html>
+</div>

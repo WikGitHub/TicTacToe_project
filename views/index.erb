@@ -1,23 +1,14 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic Tac Toe</title>
-    <style>body {white-space: pre-line; margin: 50px 50px; text-align: center;}</style>
-</head>
-<body>
+<div class="main">
     <h1>Welcome to Tic Tac Toe!</h1>
     <p><%= locals[:message] if locals[:message] != nil%></p>
     <p><%="It's #{game.current_player.to_s.gsub(/p/, 'P').gsub(/1/, ' 1').gsub(/2/, ' 2')}'s round"%></p>
     <pre><p><%= game.display_current_board %></p></pre>
-    <form action="/" method="POST">
-        <label for="field"> Select field from 1 to 9 </label>
-        <input type="text" name="field">
-        <input type="submit">
+    <form action="/" method="POST" class="form-group">
+        <label for="field" > Select field from 1 to 9 </label>
+        <input autofocus type="text" name="field" class="form-control">
+        <input type="submit" class="btn btn-primary">
     </form>
     <form action="/clear" method="GET">
-        <input autofocus type="submit" value="Reset game">
+        <input type="submit" value="Reset game" class="btn btn-danger">
     </form>
-</body>
-</html>
+</div> 
