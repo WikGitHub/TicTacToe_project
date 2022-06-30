@@ -88,6 +88,13 @@ class TicTacToe
         end
     end
 
+    def reset
+        self.board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
+        self.winner = nil
+        self.players = {player1: "X", player2: "O"}
+        self.current_player = :player1
+    end
+
 end
 
 def run_game(auto = true)
