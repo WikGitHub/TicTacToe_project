@@ -19,3 +19,4 @@ To start a server write `bundle exec ruby server.rb` in terminal
 Open the browser and select path [localhost:4567/](http://localhost:4567/)
 
 ![game screenshot](https://miro.medium.com/max/395/1*mIjIjWIUc45MQjLDVkOC-w.png)
+![game screenshot](assets/tic-tac-toe.png)
