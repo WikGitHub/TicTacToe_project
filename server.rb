@@ -18,12 +18,16 @@ post '/' do
         game.assign_X_or_O_to_a_field(input)
         game.switch_a_player
 
-        # a problem here - the code slows down and doesn't work right a draw situation
         check_victory_status_and_render_views(game)
-
-        random_computer_turn(game)
-
-        check_victory_status_and_render_views(game)
+        
+        if game.check_if_any_empty_fields == true
+            random_computer_turn(game)
+            check_victory_status_and_render_views(game)
+        else
+            erb :layouts do
+                erb(:draw, locals: {game: game})
+            end
+        end
     else
         erb :layouts do
             erb(:index, locals: {game: game, message: "Wrong input. Please select a number between 1 and 9."})
