@@ -60,7 +60,7 @@ class TicTacToe
         victorious_combinations.detect do |combination|
             if self.board[combination[0]] == self.board[combination[1]] && self.board[combination[1]] == self.board[combination[2]]
                 if self.board[combination[0]] != " "
-                    return self.current_player
+                    return self.players.key(self.board[combination[0]])
                 end
             end
         end

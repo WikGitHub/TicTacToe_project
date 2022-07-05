@@ -48,5 +48,8 @@ DEPENDENCIES
   sinatra (~> 2.2)
   sinatra-reloader (~> 1.0)
 
+RUBY VERSION
+   ruby 2.6.8p205
+
 BUNDLED WITH
    1.17.2
