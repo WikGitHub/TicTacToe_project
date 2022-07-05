@@ -19,3 +19,6 @@ To start a server write `bundle exec ruby server.rb` in terminal
 Open the browser and select path [localhost:4567/](http://localhost:4567/)
 
 ![game screenshot](assets/tic-tac-toe.png)
+
+## To play online:
+[Visit](https://tic-tac-toe-w-p.herokuapp.com/) to play online!
