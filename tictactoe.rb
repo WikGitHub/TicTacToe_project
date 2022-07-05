@@ -78,6 +78,8 @@ class TicTacToe
         self.board.select {|field| field == " "} == [] ? false : true
     end
 
+        # self.board.count(" ") == 0 ? false : true
+
     def display_winner
         if self.check_if_any_empty_fields == false && self.winner == nil
             "Draw"
@@ -123,4 +125,33 @@ def run_game(auto = true)
         @new_game.switch_a_player
     end
     puts @new_game.display_winner
+end
+
+def check_victory_status_and_render_views(game)
+    game.winner = game.check_if_any_player_wins
+    # draw
+    if game.winner == nil && game.check_if_any_empty_fields == false
+        erb :layouts do
+            erb(:draw, locals: {game: game})
+        end
+    # win
+    elsif game.winner != nil
+        erb :layouts do
+            erb(:winner, locals: {game: game}) 
+        end
+    # made a move, but no win or no draw    
+    else
+        erb :layouts do
+            erb(:index, locals: {game: game, message: "Field submitted!"})
+        end
+    end
+end
+
+def random_computer_turn(game)
+    input_machine = nil
+    while game.check_if_input_is_1_to_9(input_machine) != true || game.check_if_field_is_empty(input_machine) != true
+        input_machine = game.choose_a_field(rand(1..9))
+    end
+    game.assign_X_or_O_to_a_field(input_machine)
+    game.switch_a_player
 end
