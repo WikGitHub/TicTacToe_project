@@ -129,13 +129,8 @@ end
 
 def check_victory_status_and_render_views(game)
     game.winner = game.check_if_any_player_wins
-    # draw
-    if game.winner == nil && game.check_if_any_empty_fields == false
-        erb :layouts do
-            erb(:draw, locals: {game: game})
-        end
     # win
-    elsif game.winner != nil
+    if game.winner != nil
         erb :layouts do
             erb(:winner, locals: {game: game}) 
         end

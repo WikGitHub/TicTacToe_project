@@ -19,19 +19,22 @@ post '/' do
         game.switch_a_player
 
         check_victory_status_and_render_views(game)
-        
+
         if game.check_if_any_empty_fields == true
             random_computer_turn(game)
             check_victory_status_and_render_views(game)
         else
+            # draw
             erb :layouts do
                 erb(:draw, locals: {game: game})
             end
         end
+
     else
         erb :layouts do
-            erb(:index, locals: {game: game, message: "Wrong input. Please select a number between 1 and 9."})
+            erb(:index, locals: {game: game, message: "Wrong input. Please select an empty field between 1 and 9."})
         end
+
     end
 
 end
